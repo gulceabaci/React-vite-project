@@ -1,23 +1,42 @@
+import { useState } from 'react';
 import { items } from '../data';
 
 export default function Main() {
 
-    let index =0;
+    const [index, setIndex] = useState(0);
+    const [showMore, setShowMore] = useState(false);
+    //let index =0;
     let item = items[index];
 
+    function handlePreviousClick(e) {
+        //index = index - 1;
+        if(index > 0) {
+            setIndex(index - 1);
+        }
+        else {
+            setIndex(items.length - 1);
+        }
+    }
+
     function handleNextClick() {
-        index = index + 1;
+        //index = index + 1;
+        if(index < items.length - 1) {
+            setIndex(index + 1);
+        }
+        else {
+            setIndex(0);
+        }
+    }
+    function handleMoreClick() {
+        setShowMore(!showMore);
     }
 
-    function handlePreviousClick() {
-        index = index - 1;
-    }
-
+    
     return(
       <>
-        <button onClick={ handleNextClick }>Next</button>    
         <button onClick={ handlePreviousClick }>Previous</button>
-
+        <button onClick={ handleNextClick }>Next</button>    
+        
         <h2>
             <i> {item.title} </i> {item.price} TL
         </h2>
@@ -25,7 +44,8 @@ export default function Main() {
             {index + 1} of {items.length}
         </h3>
         <img src={item.image} alt={item.title} />
-        <p> {item.description} </p>
+        <button onClick={handleMoreClick} >show details</button>
+        {showMore && <p> {item.description} </p>}
       </>
     )
 
