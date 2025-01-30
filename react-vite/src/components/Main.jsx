@@ -1,4 +1,4 @@
-import { items } from './data.js';
+import { items } from '../data';
 
 export default function Main() {
 
@@ -6,11 +6,11 @@ export default function Main() {
     let item = items[index];
 
     function handleNextClick() {
-        console.log('Next button clicked')
+        index = index + 1;
     }
 
     function handlePreviousClick() {
-        console.log('Previous button clicked')
+        index = index - 1;
     }
 
     return(
@@ -19,7 +19,7 @@ export default function Main() {
         <button onClick={ handlePreviousClick }>Previous</button>
 
         <h2>
-            <i> {item.title} </i> {item.price}
+            <i> {item.title} </i> {item.price} TL
         </h2>
         <h3>
             {index + 1} of {items.length}
