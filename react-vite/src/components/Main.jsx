@@ -43,8 +43,9 @@ export default function Main() {
         <h3>
             {index + 1} of {items.length}
         </h3>
+        <button onClick={handleMoreClick} >{showMore ? "Hide" : "Show"} details</button>
+        <br />
         <img src={item.image} alt={item.title} />
-        <button onClick={handleMoreClick} >show details</button>
         {showMore && <p> {item.description} </p>}
       </>
     )
